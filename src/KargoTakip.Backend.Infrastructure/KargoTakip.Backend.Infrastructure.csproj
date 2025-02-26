@@ -24,4 +24,8 @@
     <ProjectReference Include="..\KargoTakip.Backend.Domain\KargoTakip.Backend.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

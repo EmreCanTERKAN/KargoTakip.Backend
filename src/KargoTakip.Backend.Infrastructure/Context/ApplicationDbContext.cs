@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
 using KargoTakip.Backend.Domain.Abstractions;
-using KargoTakip.Backend.Domain.Employees;
 using KargoTakip.Backend.Domain.Users;
 using GenericRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using KargoTakip.Backend.Domain.Kargolarim;
 
 namespace KargoTakip.Backend.Infrastructure.Context;
 internal sealed class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>, IUnitOfWork
@@ -15,8 +15,7 @@ internal sealed class ApplicationDbContext : IdentityDbContext<AppUser, Identity
     {
     }
 
-    public DbSet<Employee> Employees { get; set; }
-
+    public DbSet<Kargo> Kargolarim { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
@@ -32,13 +31,12 @@ internal sealed class ApplicationDbContext : IdentityDbContext<AppUser, Identity
         var entries = ChangeTracker.Entries<Entity>();
 
         HttpContextAccessor httpContextAccessor = new();
-        string userIdString =
-            httpContextAccessor
-            .HttpContext!
-            .User
-            .Claims
-            .First(p => p.Type == ClaimTypes.NameIdentifier)
-            .Value;
+        string userIdString = httpContextAccessor
+        .HttpContext!
+        .User
+        .Claims
+        .First(p => p.Type == ClaimTypes.NameIdentifier)
+        .Value;
 
         Guid userId = Guid.Parse(userIdString);
 

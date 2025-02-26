@@ -15,10 +15,11 @@ public static class ExtensionsMiddleware
             {
                 AppUser user = new()
                 {
+                    Id = Guid.Parse("12e7a4b5-43bf-402c-b57e-2fd106ec0689"),
                     UserName = "admin",
                     Email = "admin@admin.com",
-                    FirstName = "Taner",
-                    LastName = "Saydam",
+                    FirstName = "Emre",
+                    LastName = "Can",
                     EmailConfirmed = true,
                     CreateAt = DateTimeOffset.Now,
                 };
