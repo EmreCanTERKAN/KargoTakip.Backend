@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using GenericRepository;
 using KargoTakip.Backend.Domain.Kargolarim;
+using KargoTakip.Server.Domain.Kargolarim;
 using Mapster;
 using MediatR;
 using TS.Result;
