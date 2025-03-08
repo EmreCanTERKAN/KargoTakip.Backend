@@ -43,6 +43,8 @@ internal sealed class KargoCreateCommandHandler(IKargoRepository kargoRepository
         KargoInformation kargoInformation = new(KargoTipiEnum.FromValue(request.KargoInformation.KargoTipiValue), request.KargoInformation.Agirlik);
         kargo.KargoInformation = kargoInformation;
         kargo.KargoDurum = KargoDurumEnum.Bekliyor;
+        kargo.Alici = request.Alici;
+        kargo.Gonderen = request.Gonderen;
         kargoRepository.Add(kargo);
 
         /* await kargoRepository.AddAsync(kargo, cancellationToken)*/

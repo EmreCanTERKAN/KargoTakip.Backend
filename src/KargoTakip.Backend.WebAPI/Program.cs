@@ -67,7 +67,8 @@ app.UseCors(x => x
 .AllowAnyHeader()
 .AllowCredentials()
 .AllowAnyMethod()
-.SetIsOriginAllowed(t => true));
+.SetIsOriginAllowed(t => true)
+.SetPreflightMaxAge(TimeSpan.FromMinutes(10)));
 
 app.RegisterRoutes();
 
