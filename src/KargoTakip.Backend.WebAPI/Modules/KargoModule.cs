@@ -37,6 +37,15 @@ public static class KargoModule
             .Produces<Result<string>>()
             .WithName("KargoUpdate");
 
+        group.MapPut("update-status",
+            async (ISender sender, KargoDurumUpdateCommand request, CancellationToken cancellationToken) =>
+            {
+                var response = await sender.Send(request, cancellationToken);
+                return response.IsSuccessful ? Results.Ok(response) : Results.InternalServerError   (response);
+            })
+            .Produces<Result<string>>()
+            .WithName("KargoDurumUpdate");
+
         group.MapDelete("{id}"
             , async (Guid id, ISender sender,CancellationToken cancellationToken) =>
             {

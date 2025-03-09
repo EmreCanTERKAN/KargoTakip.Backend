@@ -45,7 +45,11 @@ internal sealed class KargoUpdateCommandHandler(IKargoRepository kargoRepository
         if (kargo.KargoDurum != KargoDurumEnum.Bekliyor)
             return Result<string>.Failure("Sadece bekleyen kargoları güncelleyebilirsiniz");
         request.Adapt(kargo);
-        KargoInformation kargoInformation = new(KargoTipiEnum.FromValue(request.KargoInformation.KargoTipiValue), request.KargoInformation.Agirlik);
+        KargoInformation kargoInformation = new()
+        {
+            KargoTipi = KargoTipiEnum.FromValue(request.KargoInformation.KargoTipiValue),
+            Agirlik = request.KargoInformation.Agirlik
+        };
         kargo.KargoInformation = kargoInformation;
         kargo.KargoDurum = KargoDurumEnum.Bekliyor;
         kargo.Alici = request.Alici;
