@@ -9,7 +9,7 @@ public static class KargoModule
 {
     public static void RegisterKargoRoutes(this IEndpointRouteBuilder app)
     {
-        RouteGroupBuilder group = app.MapGroup("/kargolarim").WithTags("Kargolarim").RequireAuthorization();
+        RouteGroupBuilder group = app.MapGroup("/kargolar").WithTags("Kargolarim").RequireAuthorization();
 
         group.MapGet("{id}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
